@@ -4,22 +4,22 @@ After the key is added the system will return with OK.
 
 Next, let’s append the Debian package repository address to the server’s sources.list:
 
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+$ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 After both commands have been entered, we’ll run update so that apt will use the new repository.
 
-sudo apt update
+$ sudo apt update
 Finally, we’ll install Jenkins and its dependencies.
 
-sudo apt install jenkins
+$ sudo apt install jenkins
 Now that Jenkins and its dependencies are in place, we’ll start the Jenkins server.
 
 Step 2 — Starting Jenkins
 Let’s start Jenkins by using systemctl:
 
-sudo systemctl start jenkins
+$ sudo systemctl start jenkins
 Since systemctl doesn’t display status output, we’ll use the status command to verify that Jenkins started successfully:
 
-sudo systemctl status jenkins
+$ sudo systemctl status jenkins
 If everything went well, the beginning of the status output shows that the service is active and configured to start at boot:
 
 Output
@@ -34,14 +34,14 @@ Now that Jenkins is up and running, let’s adjust our firewall rules so that we
 Step 3 — Opening the Firewall
 To set up a UFW firewall, visit Initial Server Setup with Ubuntu 20.04, Step 4- Setting up a Basic Firewall. By default, Jenkins runs on port 8080. We’ll open that port using ufw:
 
-sudo ufw allow 8080
+$ sudo ufw allow 8080
 Note: If the firewall is inactive, the following commands will allow OpenSSH and enable the firewall:
 
-sudo ufw allow OpenSSH
-sudo ufw enable
+$ sudo ufw allow OpenSSH
+$ sudo ufw enable
 Check ufw’s status to confirm the new rules:
 
-sudo ufw status
+$ sudo ufw status
 You’ll notice that traffic is allowed to port 8080 from anywhere:
 
 Output
@@ -64,7 +64,7 @@ Unlock Jenkins screen
 
 In the terminal window, use the cat command to display the password:
 
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 Copy the 32-character alphanumeric password from the terminal and paste it into the Administrator password field, then click Continue.
 
 The next screen presents the option of installing suggested plugins or selecting specific plugins:
